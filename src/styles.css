@@ -517,3 +517,250 @@ select {
     grid-template-columns: 1fr;
   }
 }
+
+/* lessons */
+.lesson-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.lesson-card {
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.lesson-card:hover {
+  border-color: var(--accent);
+}
+.lesson-title {
+  font-weight: 600;
+}
+.lesson-summary {
+  color: var(--text-2);
+  font-size: 13px;
+}
+.lesson-meta {
+  color: var(--muted);
+  font-size: 12px;
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.lesson-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.lesson-step {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 8px;
+  color: var(--muted);
+}
+.lesson-step.current {
+  color: var(--text);
+}
+.lesson-step.done {
+  color: var(--text-2);
+}
+.lesson-step-mark {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+.lesson-step.current .lesson-step-mark {
+  background: var(--accent);
+  border-color: transparent;
+  color: #fff;
+}
+.lesson-step.done .lesson-step-mark {
+  background: var(--status-good);
+  border-color: transparent;
+  color: #fff;
+}
+.lesson-step-title {
+  font-weight: 600;
+  font-size: 13px;
+}
+.lesson-instruction {
+  margin: 4px 0;
+  font-size: 13px;
+  color: var(--text);
+}
+.lesson-why {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--text-2);
+  border-left: 2px solid var(--accent);
+  padding-left: 8px;
+}
+.lesson-failure {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid var(--status-critical);
+  border-radius: 8px;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.lesson-debrief {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid var(--status-good);
+  border-radius: 8px;
+  font-size: 13px;
+}
+.lesson-debrief ul {
+  margin: 6px 0 10px;
+  padding-left: 18px;
+  color: var(--text-2);
+}
+
+/* compare */
+.table-wrap {
+  overflow-x: auto;
+}
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.compare-table th,
+.compare-table td {
+  text-align: left;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--grid);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.compare-table th {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 12px;
+}
+.compare-table td.warn {
+  color: var(--status-warning);
+}
+.compare-table td.crit {
+  color: var(--status-critical);
+}
+.legend.wrap {
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.table-view {
+  margin-top: 8px;
+}
+
+/* reference */
+.page.wide {
+  max-width: 1400px;
+}
+.ref-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+.ref-list {
+  margin: 0;
+}
+.ref-item {
+  margin-bottom: 10px;
+}
+.ref-item dt {
+  font-weight: 600;
+  font-size: 13px;
+}
+.ref-item dd {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--text-2);
+}
+.ref-source {
+  color: var(--accent);
+  font-size: 12px;
+}
+.markdown {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--text-2);
+  max-width: 1000px;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  color: var(--text);
+  margin: 18px 0 6px;
+}
+.markdown table {
+  border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
+  font-size: 12px;
+}
+.markdown th,
+.markdown td {
+  border: 1px solid var(--grid);
+  padding: 3px 6px;
+}
+.markdown pre {
+  background: var(--surface-2);
+  padding: 8px;
+  overflow-x: auto;
+  font-size: 11px;
+}
+.markdown a {
+  color: var(--accent);
+}
+.brand-note {
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--muted);
+  margin-left: 8px;
+}
+.dive-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.dive-list li {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px;
+  align-items: center;
+}
+.prose h3 {
+  margin-top: 20px;
+  text-transform: none;
+  font-size: 15px;
+  color: var(--text);
+}
+.prose ul {
+  color: var(--text-2);
+  padding-left: 20px;
+}
+.prose li {
+  margin-bottom: 4px;
+}

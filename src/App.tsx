@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react';
 import { COMPUTERS, computerById } from './computers/registry';
+import { AboutPage } from './components/AboutPage';
+import { ComparePage } from './components/ComparePage';
 import { ComputerShell } from './components/ComputerShell';
 import { DiveControls } from './components/DiveControls';
+import { DiveLogPanel } from './components/DiveLogPanel';
 import { EventLog } from './components/EventLog';
+import { LessonsPage } from './components/LessonsPage';
 import { ProfileChart } from './components/ProfileChart';
+import { ReferencePage } from './components/ReferencePage';
 import { SettingsPanel } from './components/SettingsPanel';
 import { Telemetry } from './components/Telemetry';
 import { useSim } from './sim/store';
@@ -25,6 +30,7 @@ export function App() {
   const sim = useSim();
 
   useEffect(() => {
+    if (tab === 'lessons') return; // the lesson runner owns the computer set
     const ids = tab === 'compare' ? COMPUTERS.map((c) => c.id) : [computerId];
     sim.setComputers(ids.map((id) => ({ id, create: () => computerById(id).create({ ...DEFAULT_SETTINGS }) })));
   }, [sim, tab, computerId]);
@@ -35,6 +41,7 @@ export function App() {
         <div className="brand">
           <span className="brand-mark" aria-hidden="true" />
           <span>Dive Computer Simulator</span>
+          <span className="brand-note">training only · not for planning real dives</span>
         </div>
         <nav className="tabs" aria-label="Sections">
           {TABS.map((t) => (
@@ -46,8 +53,8 @@ export function App() {
       </header>
       {tab === 'simulate' && <SimulatePage computerId={computerId} onSelect={setComputerId} />}
       {tab === 'compare' && <ComparePage />}
-      {tab === 'lessons' && <Placeholder title="Lessons" />}
-      {tab === 'reference' && <Placeholder title="Reference" />}
+      {tab === 'lessons' && <LessonsPage />}
+      {tab === 'reference' && <ReferencePage />}
       {tab === 'about' && <AboutPage />}
     </div>
   );
@@ -83,53 +90,8 @@ function SimulatePage({ computerId, onSelect }: { computerId: string; onSelect: 
       <aside className="col col-right">
         {fw && <Telemetry fw={fw} />}
         <EventLog filterSource={computerId} />
+        <DiveLogPanel computerId={computerId} />
       </aside>
-    </div>
-  );
-}
-
-function ComparePage() {
-  const sim = useSim();
-  return (
-    <div className="layout compare">
-      <main className="col col-main">
-        <DiveControls />
-        <div className="compare-grid">
-          {sim.computers.map((c) => (
-            <ComputerShell key={c.id} def={computerById(c.id)} fw={c.fw} compact />
-          ))}
-        </div>
-        <ProfileChart computerId={sim.computers[0]?.id ?? ''} />
-      </main>
-      <aside className="col col-right">
-        <EventLog />
-      </aside>
-    </div>
-  );
-}
-
-function Placeholder({ title }: { title: string }) {
-  return (
-    <div className="page">
-      <h2>{title}</h2>
-      <p className="muted">Coming soon.</p>
-    </div>
-  );
-}
-
-function AboutPage() {
-  return (
-    <div className="page prose">
-      <h2>About this simulator</h2>
-      <p>
-        An interactive trainer that shows how real dive computers behave: what they display at the surface and under water, how their
-        no-stop time counts down, what happens when you ascend too fast, skip a safety stop, or run into decompression.
-      </p>
-      <p>
-        <b>Not for planning real dives.</b> The decompression models here (Bühlmann ZH-L16C with gradient factors, DSAT, and
-        approximations of proprietary RGBM variants) are educational reconstructions calibrated against published manuals and tables.
-        They are not the manufacturers' firmware.
-      </p>
     </div>
   );
 }

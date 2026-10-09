@@ -3,6 +3,9 @@ import { COMPUTERS, computerById } from '../registry';
 import { Simulation } from '../../sim/simulation';
 import { DEFAULT_SETTINGS } from '../../sim/types';
 import type { ComputerCore } from '../../sim/core';
+import type { DisplayProps } from '../types';
+
+const render = (def: { Display: unknown }, fw: ComputerCore) => (def.Display as (p: DisplayProps) => unknown)({ fw });
 
 function makeSim(ids: string[]): Simulation {
   const sim = new Simulation();
@@ -31,7 +34,7 @@ describe('brand computers – first dive no-stop limits at 18 m', () => {
       const [lo, hi] = EXPECTED_18M[def.id];
       expect(snap.ndlMin, `${def.id} NDL ${snap.ndlMin}`).toBeGreaterThanOrEqual(lo);
       expect(snap.ndlMin).toBeLessThanOrEqual(hi);
-      expect(() => def.Display({ fw })).not.toThrow();
+      expect(() => render(def, fw)).not.toThrow();
       expect(fw.display()).toBeTruthy();
     });
   }
@@ -164,7 +167,7 @@ describe('brand behaviours', () => {
       const s = c.fw.snapshot();
       expect(s.diveNumber).toBe(3);
       expect(Number.isFinite(s.ndlMin)).toBe(true);
-      expect(() => computerById(c.id).Display({ fw: c.fw })).not.toThrow();
+      expect(() => render(computerById(c.id), c.fw)).not.toThrow();
     }
   });
 });

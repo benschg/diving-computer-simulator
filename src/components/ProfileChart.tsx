@@ -89,6 +89,12 @@ export function ProfileChart({ computerId }: { computerId: string }) {
           <span className="legend-item">
             <i className="swatch" style={{ background: 'var(--status-good)', opacity: 0.5 }} /> Safety-stop zone 3–6 m
           </span>
+          <span className="legend-item">
+            <i className="swatch" style={{ background: 'var(--series-2)' }} /> No-stop time (min)
+          </span>
+          <span className="legend-item">
+            <i className="swatch" style={{ background: 'var(--series-3)' }} /> Time to surface (min)
+          </span>
         </div>
       </div>
       <svg ref={svgRef} viewBox={`0 0 ${W} ${H_DEPTH + H_NDL}`} className="chart-svg" onMouseMove={onMove} onMouseLeave={() => setHover(null)} role="img" aria-label="Depth over time with deco ceiling and no-stop time">
@@ -129,19 +135,6 @@ export function ProfileChart({ computerId }: { computerId: string }) {
           ))}
           <path d={paths.tts} className="line tts" />
           <path d={paths.ndl} className="line ndl" />
-          <text x={PAD.l + 4} y={PAD.t + 2} className="tick label">
-            minutes
-          </text>
-          <g className="legend-svg" transform={`translate(${W - PAD.r - 170} ${PAD.t - 2})`}>
-            <rect width={10} height={10} rx={2} fill="var(--series-2)" />
-            <text x={14} y={9} className="tick">
-              No-stop time
-            </text>
-            <rect x={96} width={10} height={10} rx={2} fill="var(--series-3)" />
-            <text x={110} y={9} className="tick">
-              Time to surface
-            </text>
-          </g>
         </g>
 
         {hover !== null && hs && (
