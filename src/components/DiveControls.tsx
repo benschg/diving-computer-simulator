@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSim } from '../sim/store';
 import { MAX_DEPTH_M, SPEEDS, type Speed } from '../sim/simulation';
 import { fmtMinSec } from '../sim/format';
+import { SCENARIOS } from '../sim/scenarios';
 
 const ASCENT_RATES: Array<{ rate: number; label: string; note: string }> = [
   { rate: 6, label: '6 m/min', note: 'very slow' },
@@ -100,6 +101,34 @@ export function DiveControls() {
             {r.label}
           </button>
         ))}
+      </div>
+
+      <div className="controls-row">
+        <span className="field-label">Scenario</span>
+        <select
+          value={sim.script?.title ?? ''}
+          onChange={(e) => {
+            const sc = SCENARIOS.find((x) => x.title === e.target.value);
+            if (sc) {
+              sim.reset();
+              sim.setSpeed(30);
+              sim.runScript(sc.title, sc.waypoints);
+            }
+          }}
+          aria-label="Play a scripted scenario"
+        >
+          <option value="">play a scripted profile…</option>
+          {SCENARIOS.map((sc) => (
+            <option key={sc.id} value={sc.title} title={sc.description}>
+              {sc.title}
+            </option>
+          ))}
+        </select>
+        {sim.script && (
+          <span className="muted small">
+            running "{sim.script.title}" · step {Math.min(sim.script.index + 1, sim.script.waypoints.length)}/{sim.script.waypoints.length}
+          </span>
+        )}
       </div>
 
       <div className="controls-row">

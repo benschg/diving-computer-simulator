@@ -89,6 +89,9 @@ export class SuuntoZoopNovo extends ComputerCore {
   private attention = false;
   private slow = false;
   private lastLog: { number: number; maxDepthM: number; timeS: number } | null = null;
+  /** RGBM-style reduction of the allowed gradient for the current dive (1 = none) */
+  private rgbmFactor = 1;
+  private rgbmReason = '';
 
   constructor(settings: ComputerSettings) {
     super(POLICY, { ...settings, safetyStopMinutes: 3 });
@@ -100,8 +103,9 @@ export class SuuntoZoopNovo extends ComputerCore {
 
   protected mScale(): readonly number[] {
     const base = this.settings.conservatism === 2 ? SUUNTO_P2 : this.settings.conservatism === 1 ? SUUNTO_P1 : SUUNTO_P0;
-    if (this.t < this.penaltyUntilS) return base.map((s) => s * 0.85);
-    return base;
+    const penalty = this.t < this.penaltyUntilS ? 0.85 : 1;
+    const f = penalty * this.rgbmFactor;
+    return f === 1 ? base : base.map((s) => s * f);
   }
 
   protected brandTick(dtS: number): void {
@@ -122,6 +126,14 @@ export class SuuntoZoopNovo extends ComputerCore {
     } else {
       this.clear('slow');
       this.mandatoryPending = false;
+    }
+
+    // ---- reverse profile: deeper than the previous dive of the series ----
+    if (diving && this.lastLog && this.noFlyS > 0 && !this.rgbmReason.includes('reverse') && this.maxDepthM > this.lastLog.maxDepthM + 3) {
+      this.rgbmFactor *= 0.92;
+      this.rgbmReason = this.rgbmReason ? `${this.rgbmReason}, reverse profile` : 'reverse profile';
+      this.attention = true;
+      this.emit('warning', 'RGBM penalty: this dive is deeper than the previous one (reverse profile) – no-stop times reduced, diver attention symbol shown');
     }
 
     // ---- safety stops (recommended + mandatory) ----
@@ -194,6 +206,18 @@ export class SuuntoZoopNovo extends ComputerCore {
   }
 
   protected onDiveStart(): void {
+    // Suunto RGBM "adaptive decompression": closely spaced repetitive dives and reverse profiles
+    // reduce the no-stop times. Magnitudes are not published; these are modest approximations.
+    const si = this.surfaceIntervalS();
+    const reasons: string[] = [];
+    let f = 1;
+    if (this.lastLog && si > 0 && si < 60 * 60) {
+      f *= 0.92;
+      reasons.push('surface interval shorter than 1 h');
+    }
+    this.rgbmFactor = f;
+    this.rgbmReason = reasons.join(', ');
+    if (f < 1) this.emit('warning', `RGBM penalty: no-stop times reduced (${this.rgbmReason})`);
     this.deep = { status: 'none', depthM: 0, remainingS: 60 };
     this.mandatoryPending = false;
     this.mandatoryViolatedAtS = null;

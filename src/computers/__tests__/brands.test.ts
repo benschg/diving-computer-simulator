@@ -19,6 +19,7 @@ const EXPECTED_18M: Record<string, [number, number]> = {
   'oceanic-veo-4': [57, 61],
   'mares-puck-pro': [47, 52],
   'cressi-leonardo': [47, 52],
+  'garmin-descent-g1': [40, 47],
   generic: [54, 58],
 };
 

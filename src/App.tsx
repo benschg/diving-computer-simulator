@@ -27,6 +27,7 @@ const TABS: Array<{ id: Tab; label: string }> = [
 export function App() {
   const [tab, setTab] = useState<Tab>('simulate');
   const [computerId, setComputerId] = useState(COMPUTERS[0].id);
+  const [present, setPresent] = useState(false);
   const sim = useSim();
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export function App() {
   }, [sim, tab, computerId]);
 
   return (
-    <div className="app">
+    <div className={`app ${present ? 'present' : ''}`}>
       <header className="topbar">
         <div className="brand">
           <span className="brand-mark" aria-hidden="true" />
@@ -49,6 +50,9 @@ export function App() {
               {t.label}
             </button>
           ))}
+          <button className={`tab ${present ? 'is-on' : ''}`} onClick={() => setPresent(!present)} title="Classroom mode: big computer, fewer panels">
+            {present ? 'Exit presentation' : 'Present'}
+          </button>
         </nav>
       </header>
       {tab === 'simulate' && <SimulatePage computerId={computerId} onSelect={setComputerId} />}

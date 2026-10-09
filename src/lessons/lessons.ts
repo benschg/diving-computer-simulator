@@ -136,16 +136,16 @@ export const LESSONS: Lesson[] = [
       {
         id: 'overstay',
         title: 'Overstay until DECO appears',
-        instruction: 'Skip time until the NO DECO digits hit zero. The audible alarm sounds, the UP arrow and the full N2 bar flash, and the display shows a stop depth, stop time and TTS (time to surface).',
+        instruction: 'Skip time until the NO DECO digits hit zero, then stay about 4 more minutes. The audible alarm sounds, the UP arrow and the full N2 bar flash, and the display shows a stop depth, stop time and TTS (time to surface).',
         why: 'PADI’s table rule: exceeded by 5 minutes or less → 8 minutes at 5 m; more than 5 minutes → at least 15 minutes at 5 m. The computer calculates the actual requirement instead.',
-        check: (c) => c.snap.deco.required,
+        check: (c) => c.snap.deco.required && c.snap.deco.stopTimeMin >= 3,
       },
       {
         id: 'ascend',
         title: 'Ascend to just below the stop',
         instruction: 'Ascend at 9 m/min to the stop depth shown (the stop is at 3 m: hold 4 m). Within 3 m below the stop the arrows change to the STOP symbol.',
         why: 'The required stop is shallower than the 5 m you learnt for the table. Stopping at 5 m instead still works – it just takes a little longer.',
-        check: (c) => c.snap.deco.required && c.snap.depthM <= c.snap.deco.stopDepthM + 3 && c.snap.depthM >= c.snap.deco.stopDepthM,
+        check: (c) => (c.snap.deco.required && c.snap.depthM <= c.snap.deco.stopDepthM + 3 && c.snap.depthM >= c.snap.deco.stopDepthM) || (!c.snap.deco.required && c.snap.depthM <= 6),
         failIf: (c) => (c.snap.violation.aboveStopS > 20 ? 'You went above the stop depth: DOWN flashes and this counts as a Conditional Violation. Descend below the stop.' : null),
       },
       {

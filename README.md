@@ -11,8 +11,10 @@ passive, generic and gated.
 - **Simulate** – drive a diver (target depth, descent/ascent speed, time acceleration up to 120×) and watch a faithful recreation of a real
   computer react: no-stop countdown, ascent-rate bars, safety-stop timers, deco stops and ceilings, alarms, violations, lock-outs, surface
   interval and no-fly time. Press its real buttons for plan mode, alternate screens, menus.
-- **Six computers**: Suunto Zoop Novo, Shearwater Peregrine, Oceanic Veo 4.0 (the Aqua Lung i300C family, with the DSAT/Z+ "Dual Algorithm"),
-  Mares Puck Pro+, Cressi Leonardo, and a generic PADI-style trainer.
+- **Seven computers**: Suunto Zoop Novo, Shearwater Peregrine, Oceanic Veo 4.0 (the Aqua Lung i300C family, with the DSAT/Z+ "Dual Algorithm"),
+  Mares Puck Pro+, Cressi Leonardo, Garmin Descent G1, and a generic PADI-style trainer.
+- **Scenarios** – one-click scripted profiles (square dive, multilevel, deco, fast ascent, missed stop, repetitive dives) for demonstrations,
+  and a **presentation mode** that enlarges the computer for a classroom projector.
 - **Compare** – the same dive on every computer side by side, a live table of what each one shows, and a chart of their first-dive no-stop limits.
 - **Lessons** – eight guided exercises with live checks and debriefs, mapped to the Open Water learning objectives (reading the display, turning the
   dive at the first limit, ascent-rate alarms, emergency decompression, missed stops and lock-outs, repetitive dives and plan mode, nitrox, dual
@@ -53,6 +55,7 @@ tools/          calibration fitter, screenshot script
 
 - Shearwater runs Bühlmann ZH-L16C with gradient factors exactly as documented (presets 45/95, 40/85, 35/75).
 - DSAT reproduces the PADI RDP and the Oceanic DSAT table within ~1 minute.
+- Garmin's safety-stop range, lockout threshold and no-fly rule are not in the research notes and are modelled as best guesses (flagged in its reference notes).
 - Suunto RGBM, Pelagic Z+, Mares and Cressi RGBM are proprietary. They are approximated by ZH-L16C compartments whose surfacing limits were
   fitted to each manufacturer's published first-dive table (`tools/fit-mscale.ts`), so first-dive no-stop times match the manuals within about
   a minute; repetitive-dive and micro-bubble penalties are only partially reproduced. Mares prints no table and borrows the Cressi calibration;
