@@ -1,0 +1,202 @@
+.zoop-case {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #4a4f55, #1c1e21 70%);
+  padding: 11%;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 0 6px #0c0d0e, 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+.zoop-lcd {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #b9c5b0;
+  color: #1b2320;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 9% 12%;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.25);
+  font-size: 10px;
+  line-height: 1.1;
+}
+.zoop-top-icons {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  padding: 0 6%;
+}
+.zoop-icon,
+.zoop-tag,
+.zoop-ac,
+.zoop-small-label {
+  opacity: 0.12;
+}
+.zoop-icon.on,
+.zoop-tag.on,
+.zoop-ac.on {
+  opacity: 1;
+}
+.zoop-small-label {
+  opacity: 1;
+  font-size: 7px;
+}
+.zoop-depth-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+.zoop-ac {
+  font-size: 8px;
+}
+.zoop-depth {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  min-width: 70px;
+  text-align: right;
+}
+.zoop-unit {
+  font-size: 8px;
+}
+.zoop-label-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 2px 0;
+}
+.zoop-tag {
+  font-size: 7px;
+  letter-spacing: 0.06em;
+  background: rgba(0, 0, 0, 0.06);
+  padding: 0 3px;
+  border-radius: 2px;
+}
+.zoop-tag.on {
+  background: #1b2320;
+  color: #b9c5b0;
+}
+.zoop-middle {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  min-height: 52px;
+}
+.zoop-matrix {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 3px;
+}
+.zoop-big {
+  font-size: 28px;
+  font-weight: 700;
+}
+.zoop-mid {
+  font-size: 20px;
+  font-weight: 700;
+}
+.zoop-pair {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.zoop-arrow {
+  font-size: 14px;
+  animation: zoop-blink 1s steps(2, start) infinite;
+}
+.zoop-arrow.both {
+  animation: none;
+}
+.zoop-matrix-text {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.zoop-matrix-text.big {
+  font-size: 12px;
+}
+.zoop-ascent {
+  width: 9px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 1px;
+}
+.zoop-seg {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 1px;
+}
+.zoop-seg.top {
+  flex: 1.6;
+}
+.zoop-seg.on {
+  background: #1b2320;
+}
+.zoop-under-labels {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 4px 0;
+}
+.zoop-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 2px;
+}
+.zoop-field {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+.zoop-digits {
+  font-size: 15px;
+  font-weight: 700;
+}
+.zoop-btn-labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  font-size: 9px;
+  color: #aaa;
+  letter-spacing: 0.08em;
+}
+.zoop-btn-labels span {
+  position: absolute;
+}
+.zoop-btn-labels span:nth-child(1) {
+  top: 9%;
+  left: 12%;
+}
+.zoop-btn-labels span:nth-child(2) {
+  top: 9%;
+  right: 12%;
+}
+.zoop-btn-labels span:nth-child(3) {
+  bottom: 9%;
+  left: 12%;
+}
+.zoop-btn-labels span:nth-child(4) {
+  bottom: 9%;
+  right: 12%;
+}
+.blink {
+  animation: zoop-blink 1s steps(2, start) infinite;
+}
+@keyframes zoop-blink {
+  to {
+    visibility: hidden;
+  }
+}

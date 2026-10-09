@@ -57,7 +57,7 @@ export function emptyDeco(): DecoState {
 }
 
 export function noViolation(): ViolationState {
-  return { kind: 'none', label: '', sinceS: 0, aboveCeilingS: 0 };
+  return { kind: 'none', label: '', sinceS: 0, aboveCeilingS: 0, aboveStopS: 0 };
 }
 
 let eventSeq = 0;
@@ -189,6 +189,9 @@ export abstract class ComputerCore {
     const aboveCeiling = this.deco.required && this.depthM < this.deco.ceilingM - p.ceilingToleranceM;
     if (aboveCeiling) this.violation.aboveCeilingS += dtS;
     else this.violation.aboveCeilingS = 0;
+    const aboveStop = this.phase === 'dive' && this.deco.required && this.depthM < this.deco.stopDepthM - p.ceilingToleranceM;
+    if (aboveStop) this.violation.aboveStopS += dtS;
+    else this.violation.aboveStopS = 0;
 
     this.brandTick(dtS);
 

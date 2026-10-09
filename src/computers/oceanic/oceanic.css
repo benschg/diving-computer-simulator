@@ -1,0 +1,171 @@
+.veo-lcd {
+  width: 100%;
+  aspect-ratio: 1 / 1.02;
+  background: #cfd8c4;
+  color: #1a2420;
+  border-radius: 46% 46% 10px 10px;
+  padding: 10px 8px 8px;
+  box-sizing: border-box;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.2);
+}
+.veo-captions {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  padding: 2px 18px 0;
+}
+.veo-cap,
+.veo-box,
+.veo-label,
+.veo-arrow {
+  opacity: 0.12;
+}
+.veo-cap.on,
+.veo-box.on,
+.veo-label.on,
+.veo-arrow.on {
+  opacity: 1;
+}
+.veo-algo {
+  font-size: 8px;
+  opacity: 0.6;
+}
+.veo-body {
+  display: flex;
+  flex: 1;
+  gap: 4px;
+}
+.veo-bar {
+  width: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  align-items: center;
+}
+.veo-seg {
+  width: 12px;
+  height: 9px;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
+}
+.veo-seg.on {
+  background: #1a2420;
+}
+.veo-seg.yellow.on {
+  background: #8a6d00;
+}
+.veo-seg.red.on {
+  background: #8a1d12;
+}
+.veo-bar-label {
+  font-size: 7px;
+  margin-top: 2px;
+}
+.veo-centre {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.veo-top {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 4px;
+}
+.veo-top-digits {
+  font-size: 34px;
+  font-weight: 700;
+}
+.veo-small {
+  font-size: 8px;
+}
+.veo-mid {
+  display: grid;
+  grid-template-columns: 1fr auto 1.2fr;
+  align-items: center;
+  gap: 4px;
+}
+.veo-stop {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  min-height: 24px;
+}
+.veo-stop-digits {
+  font-size: 18px;
+  font-weight: 700;
+}
+.veo-box {
+  font-size: 7px;
+  border: 1px solid currentColor;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+.veo-arrows {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.9;
+  font-size: 12px;
+}
+.veo-arrow.bar {
+  font-size: 9px;
+}
+.veo-dtr {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.veo-mid-digits {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+.veo-boxes {
+  display: flex;
+  gap: 3px;
+  font-size: 7px;
+}
+.veo-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.veo-field {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+.veo-bot-digits {
+  font-size: 18px;
+  font-weight: 700;
+}
+.veo-led {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  border-radius: 50%;
+  background: #333;
+}
+.veo-led.on {
+  background: #ff3b3b;
+  box-shadow: 0 0 6px #ff3b3b;
+  animation: veo-flash 0.5s steps(2, start) infinite;
+}
+.veo-lcd .flash {
+  animation: veo-flash 0.8s steps(2, start) infinite;
+}
+@keyframes veo-flash {
+  to {
+    visibility: hidden;
+  }
+}

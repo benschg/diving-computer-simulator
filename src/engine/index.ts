@@ -4,3 +4,4 @@ export * from './buhlmann';
 export * from './dsat';
 export * from './oxygen';
 export * from './ascentRate';
+export * from './calibration';

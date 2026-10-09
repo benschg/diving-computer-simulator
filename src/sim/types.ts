@@ -58,6 +58,8 @@ export interface ViolationState {
   sinceS: number;
   /** continuous seconds spent above the decompression ceiling */
   aboveCeilingS: number;
+  /** continuous seconds spent shallower than the displayed stop depth */
+  aboveStopS: number;
 }
 
 export interface ComputerSettings {

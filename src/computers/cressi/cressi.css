@@ -1,0 +1,140 @@
+.leo-case {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #3a3f44, #121416 70%);
+  padding: 10%;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 0 5px #0a0b0c, 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+.leo-lcd {
+  width: 100%;
+  height: 100%;
+  border-radius: 48% 48% 40% 40%;
+  background: #cdd6c6;
+  color: #152018;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 12% 12% 10%;
+  box-sizing: border-box;
+  font-size: 10px;
+  gap: 3px;
+  box-shadow: inset 0 0 0 3px rgba(0, 0, 0, 0.25);
+}
+.leo-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.leo-cell {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+.leo-small {
+  font-size: 8px;
+}
+.leo-mid {
+  font-size: 15px;
+  font-weight: 700;
+}
+.leo-stage {
+  font-size: 12px;
+  opacity: 0.12;
+}
+.leo-stage.on {
+  opacity: 1;
+}
+.leo-labels {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  padding-bottom: 2px;
+}
+.leo-tag {
+  font-size: 7px;
+  letter-spacing: 0.06em;
+  opacity: 0.12;
+}
+.leo-tag.on {
+  opacity: 1;
+  font-weight: 700;
+}
+.leo-o2 {
+  margin-left: auto;
+  font-size: 7px;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+.leo-o2 i {
+  display: inline-block;
+  width: 5px;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.1);
+}
+.leo-o2 i.on {
+  background: #152018;
+}
+.leo-middle {
+  display: grid;
+  grid-template-columns: 1.2fr auto 1fr;
+  align-items: center;
+  gap: 4px;
+  min-height: 50px;
+}
+.leo-depth {
+  font-size: 28px;
+  font-weight: 700;
+}
+.leo-arrows {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.9;
+}
+.leo-arrow {
+  font-size: 10px;
+  opacity: 0.1;
+}
+.leo-arrow.on {
+  opacity: 1;
+}
+.leo-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.leo-big {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+}
+.leo-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+  padding-top: 2px;
+}
+.leo-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.leo-menu-text {
+  font-size: 22px;
+  font-weight: 700;
+}
+.leo-lcd .blink {
+  animation: leo-blink 0.8s steps(2, start) infinite;
+}
+@keyframes leo-blink {
+  to {
+    visibility: hidden;
+  }
+}

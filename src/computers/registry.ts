@@ -1,7 +1,12 @@
+import { cressiLeonardo } from './cressi';
 import { genericTrainer } from './generic';
+import { maresPuckPro } from './mares';
+import { oceanicVeo4 } from './oceanic';
+import { shearwaterPeregrine } from './shearwater';
+import { suuntoZoopNovo } from './suunto';
 import type { ComputerDefinition } from './types';
 
-export const COMPUTERS: ComputerDefinition[] = [genericTrainer];
+export const COMPUTERS: ComputerDefinition[] = [suuntoZoopNovo, shearwaterPeregrine, oceanicVeo4, maresPuckPro, cressiLeonardo, genericTrainer];
 
 export function computerById(id: string): ComputerDefinition {
   const def = COMPUTERS.find((c) => c.id === id);
